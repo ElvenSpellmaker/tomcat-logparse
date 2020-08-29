@@ -6,7 +6,7 @@ class TomcatLogger:
 		self.__logger = logger
 		self.__exceptions_counter = 0
 
-	def parseLine(self, line):
+	def parse_line(self, line):
 		if self.__tomcat_detection.detect_error(line):
 			print(f"Exception found: {line}")
 			self.__logger.log(f"Exception found: {line}")

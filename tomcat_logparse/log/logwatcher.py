@@ -14,6 +14,16 @@ class LogWatcher:
 
 		return self.__files[path]
 
+	def new_file_path(self, src_path, dest_path):
+		if not src_path in self.__files:
+			raise Exception(f"File '{src_path}' is not open!")
+
+		log = self.__files[src_path]
+		del self.__files[src_path]
+		self.__files[dest_path] = log
+
+		log.new_file_path(dest_path)
+
 	def close_file(self, path):
 		if not path in self.__files:
 			raise Exception(f"File '{path}' is not open!")
